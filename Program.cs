@@ -5,7 +5,7 @@ namespace AppWorkWithFile
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void trabalhandoComFileInfo() 
         {
             string sourcePath = @"C:\Temp\File1.txt";
             string targetPath = @"C:\Temp\File2.txt";
@@ -26,6 +26,74 @@ namespace AppWorkWithFile
                 Console.WriteLine("An error occurred");
                 Console.WriteLine(e.Message);
             }
+        }
+
+        public static void trabalhandoComStream() 
+        {
+            string Path = @"C:\Temp\File1.txt";
+            FileStream fs = null;
+            StreamReader sr = null;
+
+            try
+            {
+                fs = new FileStream(Path, FileMode.Open);
+                sr = new StreamReader(fs);
+                string line = sr.ReadLine();
+                Console.WriteLine(line);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (sr != null)
+                {
+                    sr.Close();
+                }
+
+                if (fs != null)
+                {
+                    fs.Close();
+                }
+            }
+        }
+
+        public static void trabalhandoComStreamResumido() 
+        {
+            string Path = @"C:\Temp\File1.txt";
+            //FileStream fs = null;
+
+            StreamReader sr = null;
+            try
+            {
+                sr = File.OpenText(Path);
+                while (!sr.EndOfStream)
+                {
+                    string line = sr.ReadLine();
+                    Console.WriteLine(line);
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (sr != null)
+                {
+                    sr.Close();
+                }
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            //trabalhandoComFileInfo();
+            //trabalhandoComStream();
+            trabalhandoComStreamResumido();
         }
     }
 }
