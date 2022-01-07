@@ -132,13 +132,44 @@ namespace AppWorkWithFile
             }
         }
 
+        public static void trabalhandocomStreaWriter() 
+        {
+            string sourcePath = @"C:\Temp\File1.txt";
+            string targetPath = @"C:\Temp\File2.txt";
+
+            try
+            {
+                string[] lines = File.ReadAllLines(sourcePath);
+                using (StreamWriter sw = File.AppendText(targetPath))
+                {
+                    foreach (string line in lines)
+                    {
+                        sw.WriteLine(line.ToUpper());
+                    }
+                }
+                
+
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public static void trabalhandocomStreaWriterResumido()
+        {
+
+        }
+
         static void Main(string[] args)
         {
             //trabalhandoComFileInfo();
             //trabalhandoComStream();
             //trabalhandoComStreamResumido();
             //trabalhandoComUsing();
-            trabalhandoComUsingResumido();
+            //trabalhandoComUsingResumido();
+            trabalhandocomStreaWriter();
         }
     }
 }
