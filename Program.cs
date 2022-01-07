@@ -4,9 +4,16 @@ using System.Collections.Generic;
 
 namespace AppWorkWithFile
 {
+    /// <summary>
+    /// Exercicios de fixação - C#
+    /// Objetivo: Entender o funcionamento das classes:
+    ///   -- FileInfo | File
+    ///   -- StreamWriter | StreamReader | Using
+    /// </summary>
+
     class Program
     {
-        #region Métodos
+        #region Métodos de estudo
 
         public static void trabalhandoComFileInfo() 
         {
@@ -212,20 +219,47 @@ namespace AppWorkWithFile
             }
         }
 
+        public static void TrabalhandoComPath() 
+        {
+            string path = @"C:\Temp\MyFoder\File1.txt";
+            try
+            {
+                Console.WriteLine("PathSeparator: " + Path.PathSeparator);
+                Console.WriteLine("DirectorySeparatorChar: " + Path.DirectorySeparatorChar);
+                Console.WriteLine("GetDirectoryName: " + Path.GetDirectoryName(path));
+                Console.WriteLine("GetFileName: " + Path.GetFileName(path));
+                Console.WriteLine("GetFileNameWithoutExtension: " + Path.GetFileNameWithoutExtension(path));
+                Console.WriteLine("GetExtension: " + Path.GetExtension(path));
+                Console.WriteLine("GetFullPath: " + Path.GetFullPath(path));
+                Console.WriteLine("GetFullPath: " + Path.GetTempPath());
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }
+        }
+
         #endregion
 
         static void Main(string[] args)
         {
+            //Descomentar os métodos caso queria realizar os testes.
+
+            #region Chamadas dos métodos
+
             //trabalhandoComFileInfo();
             //trabalhandoComStream();
             //trabalhandoComStreamResumido();
             //trabalhandoComUsing();
             //trabalhandoComUsingResumido();
             //trabalhandocomStreaWriter();
-            listarDiretorios();
-            listarArquivos();
-            criarDiretorio();
-
+            //listarDiretorios();
+            //listarArquivos();
+            //criarDiretorio();
+            //TrabalhandoComPath();
+            
+            #endregion
         }
     }
 }
