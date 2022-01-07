@@ -63,8 +63,6 @@ namespace AppWorkWithFile
         public static void trabalhandoComStreamResumido() 
         {
             string Path = @"C:\Temp\File1.txt";
-            //FileStream fs = null;
-
             StreamReader sr = null;
             try
             {
@@ -89,11 +87,58 @@ namespace AppWorkWithFile
             }
         }
 
+        public static void trabalhandoComUsing() 
+        {
+            string Path = @"C:\Temp\File1.txt";
+            try
+            {
+                using (FileStream fs = new FileStream(Path, FileMode.Open))
+                {
+                    using (StreamReader sr = new StreamReader(fs))
+                    {
+                        while (!sr.EndOfStream)
+                        {
+                            string line = sr.ReadLine();
+                            Console.WriteLine(line);
+                        }
+                    }
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public static void trabalhandoComUsingResumido() 
+        {
+            string Path = @"C:\Temp\File1.txt";
+            try
+            {
+                using (StreamReader sr = File.OpenText(Path))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        Console.WriteLine(line);
+                    }
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }
+        }
+
         static void Main(string[] args)
         {
             //trabalhandoComFileInfo();
             //trabalhandoComStream();
-            trabalhandoComStreamResumido();
+            //trabalhandoComStreamResumido();
+            //trabalhandoComUsing();
+            trabalhandoComUsingResumido();
         }
     }
 }
