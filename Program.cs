@@ -1,10 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace AppWorkWithFile
 {
     class Program
     {
+        #region Métodos
+
         public static void trabalhandoComFileInfo() 
         {
             string sourcePath = @"C:\Temp\File1.txt";
@@ -157,10 +160,59 @@ namespace AppWorkWithFile
             }
         }
 
-        public static void trabalhandocomStreaWriterResumido()
+        public static void listarDiretorios()
         {
-
+            string Path = @"C:\Temp\MyFoder"; 
+            try
+            {
+             IEnumerable<string> folders =  Directory.EnumerateDirectories(Path,"*.*",SearchOption.AllDirectories);
+                Console.WriteLine("Folders: ");
+                foreach (string s in folders)
+                {
+                    Console.WriteLine(s);
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }
         }
+
+        public static void listarArquivos() 
+        {
+            string Path = @"C:\Temp\MyFoder";
+            try
+            {
+                IEnumerable<string> files = Directory.EnumerateFiles(Path, "*.*", SearchOption.AllDirectories);
+                Console.WriteLine("Files: ");
+                foreach (string s in files)
+                {
+                    Console.WriteLine(s);
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public static void criarDiretorio() 
+        {
+            string Path = @"C:\Temp\MyFoder";
+            try
+            {
+                Directory.CreateDirectory(Path + @"\NewFolder");
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        #endregion
 
         static void Main(string[] args)
         {
@@ -169,7 +221,11 @@ namespace AppWorkWithFile
             //trabalhandoComStreamResumido();
             //trabalhandoComUsing();
             //trabalhandoComUsingResumido();
-            trabalhandocomStreaWriter();
+            //trabalhandocomStreaWriter();
+            listarDiretorios();
+            listarArquivos();
+            criarDiretorio();
+
         }
     }
 }
